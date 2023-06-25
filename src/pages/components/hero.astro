@@ -1,0 +1,88 @@
+---
+import Prof from "/heroprofaibry.jpg";
+import { Icon } from 'astro-icon';
+---
+<div
+  class="relative mx-12 flex flex-col items-center justify-center gap-12 xl:flex-row xl:gap-32"
+>
+  <div class="w-full xl:w-1/2">
+    <h1 class="text-xl">
+        Welcome to Aibry (アイブリー), <span class="font-bold">Singer & Songwriter</span>
+    </h1>
+
+    <div class="relative">
+      <svg class="absolute h-full w-full overflow-visible">
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style={{ stopColor: "#3f4f79", stopOpacity: 1 }}
+            ></stop>
+            <stop offset="100%" style={{ stopColor: "#2b2a2a", stopOpacity: 1 }}
+            ></stop>
+          </linearGradient>
+        </defs>
+        <path
+          id="border-path"
+          fill="none"
+          stroke="url(#gradient)"
+          stroke-width="2"></path>
+      </svg>
+      <p id="animate" class="p-6 text-main">2020年4月からギターを始め、シンガーソングライターとして梅田中心に路上ライブしてます！！
+        <br>
+        元々サッカーやバスケ・空手など様々なスポーツをし、体育の先生を目指していました。  
+        <br>
+        <br>
+        スポーツをする中で何度も音楽に助けられる事があり、自分も音楽を通して沢山の人を「笑顔」「幸せ」にしたいと言う思いで高校卒業してから音楽活動を始めました。 </p>
+    </div>
+    <div
+      class="flex justify-center pt-12 text-center text-main text-content xl:gap-16"
+    >
+      <div class="w-32">
+        <a href="https://twitter.com/Aibry_singer" target="_blank"><Icon class="h-[64px] w-[64px] transition duration-300 ease-in-out hover:opacity-50" name="logos:twitter"/></a>
+      </div>
+      <div class="w-32">
+        <a href="https://www.youtube.com/@aibry6682" target="_blank"><Icon class="h-[80px] w-[80px] transition duration-300 ease-in-out hover:opacity-50" name="logos:youtube"/></a>
+      </div>
+      <div class="w-32">
+        <a href="https://www.instagram.com/aibry_singer/" target="_blank"><Icon class="h-[80px] w-[80px] transition duration-300 ease-in-out hover:opacity-50" name="logos:instagram"/></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative">
+    <img class="h-[600px] rounded-xl" src={Prof} alt="">
+  </div>
+</div>
+
+
+
+
+    <div class="mt-12 h-2 w-full bg-slate-200"></div>
+
+    <style>
+        #border-path{
+            animation: draw 1s forwards 1s ease-in;
+        }
+        @keyframes draw{
+            to{
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+
+<script>
+    function pathUpdate(){
+        const textMain = document.querySelector("#animate") as HTMLElement
+        const path = document.querySelector("#border-path") as SVGPathElement
+
+        if(textMain && path){
+            path.setAttribute( "d",
+        `M0,0 V${textMain.offsetHeight} H${textMain.offsetWidth}
+        `)
+        }
+        const pathLength = path.getTotalLength()
+        path.style.strokeDasharray = pathLength.toString()
+        path.style.strokeDashoffset = pathLength.toString()
+    }
+    window.addEventListener('DOMContentLoaded', pathUpdate)
+    window.addEventListener('resize', pathUpdate)
+</script>
